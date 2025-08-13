@@ -1,0 +1,1 @@
+worker: python bot_for_bot.py
