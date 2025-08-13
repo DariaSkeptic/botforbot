@@ -92,9 +92,7 @@ async def admin_where(call: types.CallbackQuery):
 @router.callback_query(F.data == "admin:last")
 async def admin_last(call: types.CallbackQuery):
     if not _is_admin_context(call.message):
-
-> Daria Skeptic | Таро | Матрица Судьбы | Украшения:
-return
+        return
     if _last_non_private_chat_id:
         await call.message.answer(
             f"Последний чат: <code>{_last_non_private_chat_id}</code>\n"
@@ -144,22 +142,4 @@ async def log_any_message(message: types.Message):
         f"from_id={u.id} from_user=@{u.username or '—'} len={len(text)}"
     )
     if c.type != "private":
-        logging.warning(f"NON_PRIVATE_CHAT: {c.type} | title={c.title!r} | id={c.id}")
-
-@router.my_chat_member(flags={"block": False})
-async def my_membership(update: types.ChatMemberUpdated):
-    c = update.chat
-    _remember_chat(c)
-    logging.info(
-        f"[MY_CHAT_MEMBER] chat_id={c.id} chat_type={c.type} chat_title={repr(c.title)} "
-        f"old={update.old_chat_member.status} -> new={update.new_chat_member.status}"
-    )
-
-@router.channel_post(flags={"block": False})
-async def log_channel_post(message: types.Message):
-    c = message.chat
-    _remember_chat(c)
-    logging.info(
-        f"[CHANNEL_POST] chat_id={c.id} chat_title={repr(c.title)} "
-        f"len={len(message.text or message.caption or '')}"
-    )
+        logging.warning(f"NON_PRIVATE_CHAT: {c.type} | title={c.title!r
