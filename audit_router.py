@@ -142,4 +142,5 @@ async def log_any_message(message: types.Message):
         f"from_id={u.id} from_user=@{u.username or '—'} len={len(text)}"
     )
     if c.type != "private":
-        logging.warning(f"NON_PRIVATE_CHAT: {c.type} | title={c.title!r
+        logging.warning(f"NON_PRIVATE_CHAT: {c.type} | title={c.title!r}"
+    )
