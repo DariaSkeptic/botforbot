@@ -1,4 +1,3 @@
-> Daria Skeptic | Таро | Матрица Судьбы | Украшения:
 from typing import Optional
 from datetime import datetime
 from aiogram import Router, types, F, Bot
