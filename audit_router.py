@@ -1,6 +1,7 @@
+> Daria Skeptic | Таро | Матрица Судьбы | Украшения:
 from typing import Optional
 from datetime import datetime
-from aiogram import Router, types, F
+from aiogram import Router, types, F, Bot
 from aiogram.filters import Command
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from config import ADMIN_CHAT_ID, ADMIN_USER_ID
@@ -56,7 +57,7 @@ async def show_where(chat: types.Chat, user: types.User, output: types.Message |
         await output.answer(text)
     logging.info(f"Показана информация о чате для {user.id}")
 
-async def perform_panic(bot: types.Bot, target_id: Optional[int], output: types.Message | types.CallbackQuery):
+async def perform_panic(bot: Bot, target_id: Optional[int], output: types.Message | types.CallbackQuery):
     if not target_id:
         text = "Не знаю, из какого чата выходить. Укажи: <code>/panic &lt;chat_id&gt;</code> или дождись сообщения из группы/канала."
         if isinstance(output, types.CallbackQuery):
@@ -92,7 +93,9 @@ async def admin_where(call: types.CallbackQuery):
 @router.callback_query(F.data == "admin:last")
 async def admin_last(call: types.CallbackQuery):
     if not _is_admin_context(call.message):
-        return
+
+> Daria Skeptic | Таро | Матрица Судьбы | Украшения:
+return
     if _last_non_private_chat_id:
         await call.message.answer(
             f"Последний чат: <code>{_last_non_private_chat_id}</code>\n"
